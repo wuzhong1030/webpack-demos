@@ -12,20 +12,28 @@ module.exports = {
         // lazy: false,
         // contentBase: false,
         port: 8080,
+        // historyApiFallback: true
+        historyApiFallback: {
+            rewrites: [
+                {
+                    // from: '/pages/a',
+                    from: /^\/([a-zA-Z0-9]+\/?)([a-zA-Z0-9]+)/,
+                    to: function (context) {
+                        return '/' + context.match[1] + context.match[2] + '.html'
+                    }
+                }
+            ]
+        }
         // overlay: true
     },
 
     mode: 'development',
 
-    // entry: {
-    //     app: path.resolve(__dirname, 'src', 'app.js')
-    // },
-
     entry: ["./src/app.js"],
 
     output: {
         path: path.join(__dirname, '/dist'),
-        // publicPath: '/',
+        publicPath: '/',
         filename: "bundle.js"
     },
 

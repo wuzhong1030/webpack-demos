@@ -1,7 +1,6 @@
-//index.vue
 <template>
   <div class="page">
-      hello oo
+      hello world...
   </div>
 </template>
 
