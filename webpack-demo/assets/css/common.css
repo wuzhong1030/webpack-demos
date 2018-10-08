@@ -1,0 +1,10 @@
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+.page {
+    background: #eee;
+    color: #559999;
+    font-size: 18px;
+}

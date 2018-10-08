@@ -43,6 +43,8 @@ module.exports = {
 
     mode: 'development',
 
+    devtool: 'scource-map', //开启调试
+
     entry: ["./src/app.js"],
 
     output: {
@@ -61,10 +63,16 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     },
                     {
-                        loader: 'css-loader'
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     }
                 ]
             },

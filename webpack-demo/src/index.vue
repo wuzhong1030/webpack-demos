@@ -24,10 +24,11 @@ export default {
     })
   },
   mounted() {
+    console.log(11)
   }
 }
 </script>
 
 <style scoped>
-
+@import url(../assets/css/common.css);
 </style>
