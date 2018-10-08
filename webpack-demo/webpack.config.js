@@ -7,7 +7,7 @@ var cleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
     devServer: {  //这里配置webpack-dev-server
         publicPath: '/',
-        // hot: true,
+        hot: true,
         // inline: false,
         // lazy: false,
         // contentBase: false,
@@ -89,7 +89,10 @@ module.exports = {
             filename: 'index.html'
         }),
         new cleanWebpackPlugin('dist'),
+
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",

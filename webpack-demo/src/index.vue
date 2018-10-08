@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-      hello world...
+      ^-^ hello world...
   </div>
 </template>
 
@@ -16,12 +16,14 @@ export default {
   },
   created() {
     $.get('/config/list', function (data) {
-      console.log(data)
+      // console.log(data)
     })
 
     $.get('/msg/index', function (data) {
-      console.log(data)
+      // console.log(data)
     })
+  },
+  mounted() {
   }
 }
 </script>
