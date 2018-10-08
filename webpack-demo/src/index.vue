@@ -13,6 +13,15 @@ export default {
   },
   components: {
 
+  },
+  created() {
+    $.get('/config/list', function (data) {
+      console.log(data)
+    })
+
+    $.get('/msg/index', function (data) {
+      console.log(data)
+    })
   }
 }
 </script>
