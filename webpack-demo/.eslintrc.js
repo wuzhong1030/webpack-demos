@@ -5,6 +5,9 @@ module.exports = {
         browser: true,
         node: true
     },
+    globals: {
+        $: true
+    },
     plugins: [
         'html'
     ],
