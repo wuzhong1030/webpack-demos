@@ -11,9 +11,9 @@ const webpackHotMiddleware = require('webpack-hot-middleware')
 const historyApiFallback = require('connect-history-api-fallback')
 
 const config = require('./webpack.conf')
-const complier = webpack(config)('development')
+const complier = webpack(config)
 
-const proxyTable = require('proxy')
+const proxyTable = require('./proxy')
 
 for (let context in proxyTable) {
     app.use(proxyMiddleware(context, proxyTable[context]))
