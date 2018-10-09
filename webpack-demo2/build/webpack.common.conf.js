@@ -4,6 +4,19 @@ const productionConfig = require('./webpack.prod.conf')
 const merge = require('webpack-merge')
 
 const generateConfig = env => {
+    
+    const scriptLoader = [
+        {
+            loader: 'babel-loader'
+        }
+    ].concat()
+
+
+    const styleLoader = [
+
+    ]
+
+
     return {
         entry: {
             app: './src/app.js'
