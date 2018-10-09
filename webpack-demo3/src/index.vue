@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-      <span>^-^ webpack demo3.....</span>
+      <span>webpack demo3.....</span>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     });
   },
   mounted() {
-    console.log(11);
+    // console.log(11);
   }
 };
 </script>

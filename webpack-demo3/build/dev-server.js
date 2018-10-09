@@ -27,8 +27,7 @@ app.use(webpackDevMiddleware(complier, {
 
 app.use(webpackHotMiddleware(complier))
 
-
 app.listen(port, function () {
     console.log(`success listen on ${port}`)
-    opn(`http:localhost: ${port}`)
+    opn(`http://localhost:${port}`)
 })
