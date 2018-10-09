@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-      <span>webpack demo3.....</span>
+      <span>webpack demo3..</span>
   </div>
 </template>
 
@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style scoped>
-
+.page {
+    color: blueviolet;
+}
 </style>
