@@ -6,15 +6,11 @@
 
 <script type="text/ecmascript-6">
 export default {
-  data() {
-    return {
-
-    }
+  data () {
+    return {}
   },
-  components: {
-
-  },
-  created() {
+  components: {},
+  created () {
     $.get('/config/list', function (data) {
       // console.log(data)
     })
@@ -23,7 +19,7 @@ export default {
       // console.log(data)
     })
   },
-  mounted() {
+  mounted () {
     console.log(11)
   }
 }

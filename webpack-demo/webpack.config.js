@@ -60,6 +60,20 @@ module.exports = {
                 use: 'vue-loader'
             },
             {
+                test: /\.(js|vue)$/,
+                enforce: 'pre',
+                exclude: /node_modules/,
+                include: [path.resolve(__dirname, 'src')],
+                use: [
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            formatter: require('eslint-friendly-formatter')
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 include: [path.resolve(__dirname, 'src')],
@@ -75,12 +89,6 @@ module.exports = {
                                 }]
                             ]
                         },
-                    },
-                    {
-                        loader: 'eslint-loader',
-                        options: {
-                            formatter: require('eslint-friendly-formatter')
-                        }
                     }
                 ]
             },
@@ -117,13 +125,16 @@ module.exports = {
 
     plugins: [
         new vueLoaderPlugin(),
+
         new htmlWebpackPlugin({
             template: 'index.html',
             filename: 'index.html'
         }),
+
         new cleanWebpackPlugin('dist'),
 
         new webpack.HotModuleReplacementPlugin(),
+
         new webpack.NamedModulesPlugin(),
 
         new webpack.ProvidePlugin({
