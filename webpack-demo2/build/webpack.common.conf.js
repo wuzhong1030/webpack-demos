@@ -1,10 +1,12 @@
 const developmentConfig = require('./webpack.dev.conf')
 const productionConfig = require('./webpack.prod.conf')
 
+const path = require('path')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
+var vueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const generateConfig = env => {
 
@@ -57,7 +59,7 @@ const generateConfig = env => {
         }]
     )
 
-    const styleLoader = [
+    const styleLoader =
         env === 'production'
             ? extractLess.extract({
                 fallback: 'style-loader',
@@ -66,7 +68,15 @@ const generateConfig = env => {
             : [{
                 loader: 'style-loader'
             }].concat(cssLoaders)
-    ]
+
+    const eslintloader = env === 'production'
+        ? []
+        : [{
+            loader: 'eslint-loader',
+            options: {
+                formatter: require('eslint-friendly-formatter')
+            }
+        }]
 
     return {
         entry: {
@@ -78,17 +88,32 @@ const generateConfig = env => {
         module: {
             rules: [
                 {
+                    test: /\.vue$/,
+                    use: 'vue-loader'
+                },
+                {
+                    test: /\.(js|vue)$/,
+                    enforce: 'pre',
+                    exclude: /node_modules/,
+                    include: [path.resolve(__dirname, 'src')],
+                    use: eslintloader
+                },
+                {
                     test: /\.less$/,
                     use: styleLoader
                 },
                 {
                     test: /\.js/,
+                    exclude: /node_modules/,
+                    include: [path.resolve(__dirname, 'src')],
                     use: scriptLoader
                 }
             ]
         },
         plugins: [
             extractLess,
+            
+            new vueLoaderPlugin(), //把其他规则也copy一份到vue文件中使用
 
             new htmlWebpackPlugin({
                 template: 'index.html',
@@ -107,5 +132,6 @@ const generateConfig = env => {
 
 module.exports = env => {
     let config = env === 'development' ? developmentConfig : productionConfig
+
     return merge(generateConfig(), config)
 }
