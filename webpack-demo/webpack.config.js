@@ -37,8 +37,8 @@ module.exports = {
                 },
                 changeOrigin: true //改变源到设置的路径上
             }
-        }
-        // overlay: true
+        },
+        overlay: true
     },
 
     mode: 'development',
@@ -58,6 +58,30 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: 'vue-loader'
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                ['@babel/preset-env', {
+                                    targets: {
+                                        browsers: ['> 1%', 'last 2 versions']
+                                    }
+                                }]
+                            ]
+                        },
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            formatter: require('eslint-friendly-formatter')
+                        }
+                    }
+                ]
             },
             {
                 test: /\.css$/,
