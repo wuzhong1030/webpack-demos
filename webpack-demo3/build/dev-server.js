@@ -10,12 +10,23 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const historyApiFallback = require('connect-history-api-fallback')
 
-const config = require('./webpack.base.conf')
+const config = require('./webpack.conf')
 const complier = webpack(config)('development')
 
-webpackDevMiddleware(complier, {
-    publicPath: ''
-})
+const proxyTable = require('proxy')
+
+for (let context in proxyTable) {
+    app.use(proxyMiddleware(context, proxyTable[context]))
+}
+
+app.use(historyApiFallback(require('./history-api-fallback')))
+
+app.use(webpackDevMiddleware(complier, {
+    publicPath: config.output.publicPath
+}))
+
+app.use(webpackHotMiddleware(complier))
+
 
 app.listen(port, function () {
     console.log(`success listen on ${port}`)
