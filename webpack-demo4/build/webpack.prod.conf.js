@@ -16,7 +16,8 @@ const env = require('../config/prod.env')
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
+      // sourceMap: config.build.productionSourceMap,
+      sourceMap: false,
       extract: true,
       usePostCSS: true
     })
@@ -29,6 +30,14 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+
+    new webpack.DllReferencePlugin({
+      manifest: require('../src/dll/ui-manifest.json')
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: require('../src/dll/vue-manifest.json')
+    }),
+
     new webpack.DefinePlugin({
       'process.env': env
     }),
@@ -39,7 +48,8 @@ const webpackConfig = merge(baseWebpackConfig, {
         }
       },
       sourceMap: config.build.productionSourceMap,
-      parallel: true
+      parallel: true,
+      cache: true
     }),
     // extract css into its own file
     new ExtractTextPlugin({

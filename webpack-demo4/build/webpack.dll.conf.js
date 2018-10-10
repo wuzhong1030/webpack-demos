@@ -8,14 +8,14 @@ module.exports = {
     },
 
     output: {
-        path: path.join(__dirname, '../src/dll'),
+        path: path.join(__dirname, '../src/dll/'),
         filename: '[name].dll.js',
         library: '[name]'
     },
 
     plugins: [
         new webpack.DllPlugin({
-            path: path.join(__dirname,'../src/dll', '[name]-mainfest.json'),
+            path: path.join(__dirname, '../src/dll/', '[name]-manifest.json'),
             name: '[name]',
         }),
 
