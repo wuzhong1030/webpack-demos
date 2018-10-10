@@ -112,11 +112,22 @@ const generateConfig = env => {
                 }
             ]
         },
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    commons: {
+                        name: "commons",
+                        chunks: "initial",
+                        minChunks: 2
+                    }
+                }
+            }
+        },
         plugins: [
             extractLess,
 
             new BundleAnalyzerPlugin(), //打包分析插件
-            
+
             new vueLoaderPlugin(), //把其他规则也copy一份到vue文件中使用
 
             new htmlWebpackPlugin({

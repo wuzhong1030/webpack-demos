@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './index.vue'
 
+import './pageA'
+import './pageB'
+
 const root = document.createElement('div')
 document.body.appendChild(root)
 
