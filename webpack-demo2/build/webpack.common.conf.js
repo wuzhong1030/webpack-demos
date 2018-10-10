@@ -6,7 +6,9 @@ const merge = require('webpack-merge')
 const webpack = require('webpack')
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
-var vueLoaderPlugin = require('vue-loader/lib/plugin')
+const vueLoaderPlugin = require('vue-loader/lib/plugin')
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const generateConfig = env => {
 
@@ -112,6 +114,8 @@ const generateConfig = env => {
         },
         plugins: [
             extractLess,
+
+            new BundleAnalyzerPlugin(), //打包分析插件
             
             new vueLoaderPlugin(), //把其他规则也copy一份到vue文件中使用
 
