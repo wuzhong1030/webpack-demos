@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HappyPack = require('happypack')
 
 const env = require('../config/prod.env')
 
@@ -30,6 +31,13 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new HappyPack({ // 开启多进程
+      id: 'vue',
+      loaders: [{
+        loader: 'vue-loader',
+        options: require('./vue-loader.conf')
+      }]
+    }),
 
     new webpack.DllReferencePlugin({
       manifest: require('../src/dll/ui-manifest.json')
