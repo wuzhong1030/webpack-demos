@@ -27,11 +27,14 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.NamedChunksPlugin(),
+
+        new webpack.NamedModulesPlugin()
         // new webpack.optimize.SplitChunksPlugin({
         //     name: 'vendor',
         //     minChunks: Infinity
         // })
 
-        new webpack.optimize.CommonsChunkPlugin({}) //webpack3
+        // new webpack.optimize.CommonsChunkPlugin({}) //webpack3
     ]
 }

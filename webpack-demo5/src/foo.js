@@ -1,3 +1,9 @@
 import react from 'react'
+import module from './module'
 
-console.log('hello react...')
+import('./async').then(function (r) {
+    console.log(r)
+})
+
+console.log('hello react.....')
+console.log(module)
