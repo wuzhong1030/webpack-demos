@@ -29,6 +29,7 @@ export default {
 @import url(./assets/css/base.css);
 .page {
   background-color: #123456;
+  height: 100px;
   span {
     color: #654321;
   }
