@@ -71,7 +71,12 @@ const generateConfig = env => {
             //     fallback: 'style-loader',
             //     use: cssLoaders
             // })
-            ? [miniCssExtractPlugin.loader, ...cssLoaders]
+            ? [{
+                loader: miniCssExtractPlugin.loader,
+                options: {
+                    minimize: true
+                }
+            }, ...cssLoaders]
             : [{
                 loader: 'style-loader'
             }].concat(cssLoaders)
