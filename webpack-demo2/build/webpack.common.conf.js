@@ -131,9 +131,8 @@ const generateConfig = env => {
         plugins: [
             extractLess,
 
-            // new cleanWebpackPlugin(path.resolve(__dirname), '../dist'),
+            // new cleanWebpackPlugin(path.resolve(__dirname), './dist'),
             new cleanWebpackPlugin('./dist'),
-
             // new BundleAnalyzerPlugin(), //打包分析插件
 
             new vueLoaderPlugin(), //把其他规则也copy一份到vue文件中使用

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './index.vue'
 
+import './assets/css/base.less'
+
 import './pageA'
 import './pageB'
 

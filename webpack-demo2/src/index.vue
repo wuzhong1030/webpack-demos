@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url(./assets/css/base.css);
+// @import url(./assets/css/base.less);
 .page {
   background-color: #123456;
   height: 100px;
