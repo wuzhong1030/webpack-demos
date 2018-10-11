@@ -26,22 +26,22 @@ const generateConfig = env => {
                 minimize: true
             }
         },
-        {
-            loader: 'postcss-loader',
-            options: {
-                ident: 'postcss',
-                plugins: [
-                    require('postcss-cssnext')()
-                ].concat(
-                    env === 'production'
-                        ? require('postcss-sprites')({
-                            spritePath: 'dist/assets/images/sprites',
-                            retina: true
-                        })
-                        : []
-                )
-            }
-        },
+        // {
+        //     loader: 'postcss-loader',
+        //     options: {
+        //         ident: 'postcss',
+        //         plugins: [
+        //             require('postcss-cssnext')()
+        //         ].concat(
+        //             env === 'production'
+        //                 ? require('postcss-sprites')({
+        //                     spritePath: 'dist/assets/images/sprites',
+        //                     retina: true
+        //                 })
+        //                 : []
+        //         )
+        //     }
+        // },
         {
             loader: 'less-loader',
             options: {
@@ -136,8 +136,7 @@ const generateConfig = env => {
         plugins: [
             extractLess,
 
-            // new cleanWebpackPlugin(path.resolve(__dirname), './dist'),
-            new cleanWebpackPlugin('./dist'),
+            new cleanWebpackPlugin(path.resolve(__dirname), '../dist'),
             // new BundleAnalyzerPlugin(), //打包分析插件
 
             new vueLoaderPlugin(), //把其他规则也copy一份到vue文件中使用
@@ -159,6 +158,5 @@ const generateConfig = env => {
 
 module.exports = env => {
     let config = env === 'development' ? developmentConfig : productionConfig
-
     return merge(generateConfig(env), config)
 }
