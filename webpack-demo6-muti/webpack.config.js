@@ -26,10 +26,6 @@ var baseConfig = {
     },
 
     plugins: [
-        new htmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'index.html'
-        }),
 
         new cleanWebpackPlugin('dist')
     ]
@@ -38,7 +34,7 @@ var baseConfig = {
 var generatePages = function ({
     title = '',
     entry = '',
-    template = './src/index.html',
+    template = 'index.html',
     name = '',
     chunks = []
 }) {
@@ -58,7 +54,7 @@ var pages = [
     generatePages({
         title: 'page A',
         entry: {
-            a: './src/a.js'
+            a: './pages/a.js'
         },
         name: 'a',
         chunks: ['react', 'a']
@@ -66,7 +62,7 @@ var pages = [
     generatePages({
         title: 'page B',
         entry: {
-            b: './src/b.js'
+            b: './pages/b.js'
         },
         name: 'b',
         chunks: ['react', 'b']
@@ -74,11 +70,15 @@ var pages = [
     generatePages({
         title: 'page C',
         entry: {
-            c: './src/c.js'
+            c: './pages/c.js'
         },
         name: 'c',
         chunks: ['react', 'c']
     })
 ]
 
-module.exports = merge(baseConfig, pages)
+console.log(pages.map(page => merge(baseConfig, page)))
+
+module.exports = pages.map(function (page) {
+    return merge(baseConfig, page)
+})
