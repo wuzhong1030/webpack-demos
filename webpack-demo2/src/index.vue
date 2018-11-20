@@ -20,7 +20,7 @@ export default {
     });
   },
   mounted() {
-    console.log(11);
+    // console.log(11);
   }
 };
 </script>
